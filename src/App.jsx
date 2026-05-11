@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import './App.css'
-import TravelerForm from './Compunents/Traveler_form.jsx'
+import TravelerForm from './Compunents/Form/Form.jsx'
+import Feed from './Compunents/Feed/Feed.jsx'
+
+
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
+      <div className='bg-amber-100 h-dvh'>
+        <Feed/>
         <TravelerForm />
-        <h1>Hello
-          <h1>Hello</h1>
-        </h1>
       </div>
     </>
   )

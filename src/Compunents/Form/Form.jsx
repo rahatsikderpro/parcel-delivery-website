@@ -1,4 +1,7 @@
-function TravelerForm() {
+import Dropdown from "../Ui/Dropdown";
+import { serverTimestamp } from "firebase/firestore";
+
+function Form() {
   const handleSubmit = (e) => {
     e.preventDefault(); // stop page reload
 
@@ -6,6 +9,7 @@ function TravelerForm() {
 
     const sent_data = {
       phone: formData.get("phone"),
+      role: formData.get("role"),
       length: formData.get("length"),
       width: formData.get("width"),
       depth: formData.get("depth"),
@@ -23,9 +27,11 @@ function TravelerForm() {
         return;
       }
     }
-    // let existingData = JSON.parse(localStorage.getItem("sent_data")) || [];
-    // existingData.push(sent_data);
-    // localStorage.setItem("sent_data", JSON.stringify(existingData));
+    // let time = new Date();
+    // console.log("timestamp", time);
+    let existingData = JSON.parse(localStorage.getItem("sent_data")) || [];
+    existingData.push(sent_data);
+    localStorage.setItem("sent_data", JSON.stringify(existingData));
   };
 
   return (
@@ -33,6 +39,23 @@ function TravelerForm() {
       <form onSubmit={handleSubmit} className="w-full max-w-110">
         <div className="w-full max-w-110 mx-auto p-5">
           <h3 className="">Post form</h3>
+          <div>
+            <select
+              name="role"
+              className="w-50 border-0 focus:outline-none bg-amber-600 rounded-md p-2"
+            >
+              <option value="Traveller" className="bg-sky-100 hover:bg-red-500">
+                As Traveller
+              </option>
+              <option value="Sender" className="bg-sky-100">
+                As Sender
+              </option>
+            </select>
+          </div>
+
+          {/* Custome Dropdown */}
+          <Dropdown />
+
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
             <label className="">Phone number</label>
             <div className="flex gap-3">
@@ -144,4 +167,4 @@ function TravelerForm() {
   );
 }
 
-export default TravelerForm;
+export default Form;
