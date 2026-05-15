@@ -1,7 +1,11 @@
 //import airports from "../../Airports/Airports_List.js";
 
+import { useState, useEffect } from "react";
+import { db } from "../../Firebase/Firebase.js";
+import { query, getDocs, collection, orderBy } from "firebase/firestore";
 function Feed() {
-  const allPosts = JSON.parse(localStorage.getItem("sent_data")) || [];
+  //const allPosts= JSON.parse(localStorage.getItem("sent_data")) || [];
+  const [allPosts, setAllPosts] = useState([]);
   // phone: formData.get("phone"),
   //       role: formData.get("role"),
   //       length: formData.get("length"),
@@ -14,6 +18,32 @@ function Feed() {
   //       expected_price: formData.get("expected_price"),
   //       pickup_location: formData.get("pickup_location"),
   //       delivery_location: formData.get("delivery_location"),
+
+  //fatch data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(
+          collection(db, "delivery_app"),
+          orderBy("timestamp", "asc"),
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        const dataArray = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setAllPosts(dataArray);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="">
       <h2 className="bg-amber-500">Helo from Feed.jsx</h2>

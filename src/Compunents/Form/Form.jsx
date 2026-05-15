@@ -1,12 +1,23 @@
 import Dropdown from "../Ui/Dropdown";
-import { serverTimestamp } from "firebase/firestore";
+import { db } from "../../Firebase/Firebase.js";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Form() {
-  const handleSubmit = (e) => {
-    e.preventDefault(); // stop page reload
+  // const handleSubmit = (e) => {
+  //   e.preventDefault(); // stop page reload
 
+  //   //send data
+
+  //   // let time = new Date();
+  //   // console.log("timestamp", time);
+  //   let existingData = JSON.parse(localStorage.getItem("sent_data")) || [];
+  //   existingData.push(sent_data);
+  //   localStorage.setItem("sent_data", JSON.stringify(existingData));
+  // };
+
+  const handleSend = async (e) => {
+    e.preventDefault();
     const formData = new FormData(e.target);
-
     const sent_data = {
       phone: formData.get("phone"),
       role: formData.get("role"),
@@ -24,19 +35,35 @@ function Form() {
     for (let key in sent_data) {
       if (!sent_data[key]) {
         console.log(`${key} is required`);
+        console.log("here are we");
         return;
       }
     }
-    // let time = new Date();
-    // console.log("timestamp", time);
-    let existingData = JSON.parse(localStorage.getItem("sent_data")) || [];
-    existingData.push(sent_data);
-    localStorage.setItem("sent_data", JSON.stringify(existingData));
+    try {
+      const sendingmessage = await addDoc(collection(db, "delivery_app"), {
+        phone: formData.get("phone"),
+        role: formData.get("role"),
+        length: formData.get("length"),
+        width: formData.get("width"),
+        depth: formData.get("depth"),
+        max_weight: formData.get("max_weight"),
+        location_form: formData.get("location_form"),
+        location_to: formData.get("location_to"),
+        departure_date: formData.get("departure_date"),
+        expected_price: formData.get("expected_price"),
+        pickup_location: formData.get("pickup_location"),
+        delivery_location: formData.get("delivery_location"),
+        timestamp: serverTimestamp(),
+      });
+      console.log("Sent successfully to firebase");
+    } catch (e) {
+      console.error("Error : ", e);
+    }
   };
 
   return (
     <div className="bg-red-300 mx-auto rounded-lg -md w-full max-w-110 flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="w-full max-w-110">
+      <form onSubmit={handleSend} className="w-full max-w-110">
         <div className="w-full max-w-110 mx-auto p-5">
           <h3 className="">Post form</h3>
           <div>
@@ -159,8 +186,10 @@ function Form() {
         <button
           type="submit"
           className="block bg-sky-400 cursor-pointer w-full max-w-50 p-3 mx-auto mb-8 rounded-md"
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
         >
-          Submit
+          Post
         </button>
       </form>
     </div>
