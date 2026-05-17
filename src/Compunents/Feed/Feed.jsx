@@ -3,9 +3,17 @@
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase.js";
 import { query, getDocs, collection, orderBy } from "firebase/firestore";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
+
 function Feed() {
   //const allPosts= JSON.parse(localStorage.getItem("sent_data")) || [];
   const [allPosts, setAllPosts] = useState([]);
+  const [showPassword, setShowPassword] = useState(null);
+  const togglePassword = (index) => {
+     setShowPassword(
+    showPassword === index ? null : index
+  );
+  };
   // phone: formData.get("phone"),
   //       role: formData.get("role"),
   //       length: formData.get("length"),
@@ -64,7 +72,15 @@ function Feed() {
                 </div>
               )}
             </div>
-            <div>Phone: {data.phone}</div>
+            <div className=" w-full flex items-center gap-2">
+              <div className="w-70">
+                Phone: {showPassword === index ? data.phone : "••••••••••••••••••••••••••"}
+              </div>
+              <div onClick={() => togglePassword(index)} className="cursor-pointer w-10  select-none flex
+              justify-center">
+                {showPassword === index ? <FaEyeSlash /> : <FaEye />}
+              </div>
+            </div>
             <div className="flex gap-4">
               <div>Available Space</div>
               <div>L: {data.length}</div>
@@ -72,6 +88,7 @@ function Feed() {
               <div>D: {data.depth}</div>
             </div>
             <div>Max Weight: {data.max_weight}</div>
+            <div>Location To: {data.location_to}</div>
             <div>Location From: {data.location_form}</div>
             <div>Departure Date: {data.departure_date}</div>
             <div>Price: {data.expected_price}</div>
@@ -80,9 +97,8 @@ function Feed() {
           </div>
         );
       })}
-      <div>asdwadwadwawwd</div>
       {/* <div>{airports[0].name}</div>  */}
-      <div></div>
+
       <div></div>
       <div></div>
       <div></div>

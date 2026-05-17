@@ -1,8 +1,14 @@
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import isValidPhoneNumber from "react-phone-number-input";
+
 import Dropdown from "../Ui/Dropdown";
+import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase.js";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Form() {
+  const [value, setValue] = useState('');
   // const handleSubmit = (e) => {
   //   e.preventDefault(); // stop page reload
 
@@ -19,7 +25,7 @@ function Form() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const sent_data = {
-      phone: formData.get("phone"),
+      phone: value,
       role: formData.get("role"),
       length: formData.get("length"),
       width: formData.get("width"),
@@ -32,13 +38,18 @@ function Form() {
       pickup_location: formData.get("pickup_location"),
       delivery_location: formData.get("delivery_location"),
     };
+    console.log("validNumver", sent_data.phone)
+    if (!isValidPhoneNumber.value) {
+      alert("Please enter a valid phone number for the selected country.")
+      return;
+    }
     for (let key in sent_data) {
       if (!sent_data[key]) {
         console.log(`${key} is required`);
-        console.log("here are we");
         return;
       }
     }
+    
     try {
       const sendingmessage = await addDoc(collection(db, "delivery_app"), {
         phone: formData.get("phone"),
@@ -79,21 +90,18 @@ function Form() {
               </option>
             </select>
           </div>
-
           {/* Custome Dropdown */}
           <Dropdown />
 
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Phone number</label>
-            <div className="flex gap-3">
-              <input
-                name="phone"
-                type="number"
-                placeholder="01XXX…123"
-                className=" bg-amber-600 flex-1 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
-              />
-            </div>
-          </div>
+          
+          <PhoneInput
+            placeholder="Enter phone number"
+            defaultCountry="BD"
+            value={value}
+            onChange={setValue}
+            className="bg-amber-600 flex-1 min-w-0  focus:outline-none outline-0 border-none rounded-md p-2  placeholder:text-center"
+          />
+
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
             <label className="">Free Space Dimension (L × W × H)</label>
             <div className="flex gap-3 w-full">
