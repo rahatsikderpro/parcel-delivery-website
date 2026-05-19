@@ -1,6 +1,6 @@
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import isValidPhoneNumber from "react-phone-number-input";
+import {isValidPhoneNumber} from "react-phone-number-input";
 
 import Dropdown from "../Ui/Dropdown";
 import { useState, useEffect } from "react";
@@ -39,7 +39,8 @@ function Form() {
       delivery_location: formData.get("delivery_location"),
     };
     console.log("validNumver", sent_data.phone)
-    if (!isValidPhoneNumber.value) {
+    if (!isValidPhoneNumber(value)) {
+      console.log("isValidPhoneNumber.value", isValidPhoneNumber(value))
       alert("Please enter a valid phone number for the selected country.")
       return;
     }
