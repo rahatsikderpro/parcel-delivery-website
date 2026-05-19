@@ -10,9 +10,7 @@ function Feed() {
   const [allPosts, setAllPosts] = useState([]);
   const [showPassword, setShowPassword] = useState(null);
   const togglePassword = (index) => {
-     setShowPassword(
-    showPassword === index ? null : index
-  );
+    setShowPassword(showPassword === index ? null : index);
   };
   // phone: formData.get("phone"),
   //       role: formData.get("role"),
@@ -54,49 +52,59 @@ function Feed() {
 
   return (
     <div className="">
-      <h2 className="bg-amber-500">Helo from Feed.jsx</h2>
-      {allPosts.map((data, index) => {
-        return (
-          <div
-            key={index}
-            className="p-4 m-5 bg-(--background-feed) mx-auto rounded-lg -md w-full max-w-110 flex flex-col "
-          >
-            <div className="mx-auto  w-full p-3 rounded-md">
-              {data.role == "Sender" ? (
-                <div className="w-min mr-auto text-left bg-green-100 p-3 rounded-md">
-                  {data.role}
-                </div>
-              ) : (
-                <div className="w-min ml-auto text-right bg-green-100 p-3 rounded-md">
-                  {data.role}
-                </div>
-              )}
-            </div>
-            <div className=" w-full flex items-center gap-2">
-              <div className="w-70">
-                Phone: {showPassword === index ? data.phone : "••••••••••••••••••••••••••"}
+     
+      {allPosts ? (
+        <div className="text-center bg-sky-300 max-w-110 mx-auto min-h-20"> Nothing to show</div>
+      ) : (
+        allPosts.map((data, index) => {
+          return (
+            <div
+              key={index}
+              className="p-4 m-5 bg-(--background-feed) mx-auto rounded-lg -md w-full max-w-110 flex flex-col "
+            >
+              <div className="mx-auto  w-full p-3 rounded-md">
+                {data.role == "Sender" ? (
+                  <div className="w-min mr-auto text-left bg-green-100 p-3 rounded-md">
+                    {data.role}
+                  </div>
+                ) : (
+                  <div className="w-min ml-auto text-right bg-green-100 p-3 rounded-md">
+                    {data.role}
+                  </div>
+                )}
               </div>
-              <div onClick={() => togglePassword(index)} className="cursor-pointer w-10  select-none flex
-              justify-center">
-                {showPassword === index ? <FaEyeSlash /> : <FaEye />}
+              <div className=" w-full flex items-center gap-2">
+                <div className="w-70">
+                  Phone:{" "}
+                  {showPassword === index
+                    ? data.phone
+                    : "••••••••••••••••••••••••••"}
+                </div>
+                <div
+                  onClick={() => togglePassword(index)}
+                  className="cursor-pointer w-10  select-none flex
+              justify-center"
+                >
+                  {showPassword === index ? <FaEyeSlash /> : <FaEye />}
+                </div>
               </div>
+              <div className="flex gap-4">
+                <div>Available Space</div>
+                <div>L: {data.length}</div>
+                <div>W: {data.width}</div>
+                <div>D: {data.depth}</div>
+              </div>
+              <div>Max Weight: {data.max_weight}</div>
+              <div>Location To: {data.location_to}</div>
+              <div>Location From: {data.location_form}</div>
+              <div>Departure Date: {data.departure_date}</div>
+              <div>Price: {data.expected_price}</div>
+              <div>Pickup From: {data.pickup_location}</div>
+              <div>Deliver To: {data.delivery_location}</div>
             </div>
-            <div className="flex gap-4">
-              <div>Available Space</div>
-              <div>L: {data.length}</div>
-              <div>W: {data.width}</div>
-              <div>D: {data.depth}</div>
-            </div>
-            <div>Max Weight: {data.max_weight}</div>
-            <div>Location To: {data.location_to}</div>
-            <div>Location From: {data.location_form}</div>
-            <div>Departure Date: {data.departure_date}</div>
-            <div>Price: {data.expected_price}</div>
-            <div>Pickup From: {data.pickup_location}</div>
-            <div>Deliver To: {data.delivery_location}</div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
       {/* <div>{airports[0].name}</div>  */}
 
       <div></div>
