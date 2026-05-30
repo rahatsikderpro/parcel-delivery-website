@@ -53,7 +53,7 @@ function Form() {
     
     try {
       const sendingmessage = await addDoc(collection(db, "delivery_app"), {
-        phone: formData.get("phone"),
+        phone: value,
         role: formData.get("role"),
         length: formData.get("length"),
         width: formData.get("width"),
@@ -74,19 +74,19 @@ function Form() {
   };
 
   return (
-    <div className="bg-red-300 mx-auto rounded-lg -md w-full max-w-110 flex items-center justify-center">
+    <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-110 flex items-center justify-center">
       <form onSubmit={handleSend} className="w-full max-w-110">
         <div className="w-full max-w-110 mx-auto p-5">
           <h3 className="">Post form</h3>
           <div>
             <select
               name="role"
-              className="w-50 border-0 focus:outline-none bg-amber-600 rounded-md p-2"
+              className="w-50 border-0 focus:outline-none  rounded-md p-2"
             >
-              <option value="Traveller" className="bg-sky-100 hover:bg-red-500">
+              <option value="Traveller" className="">
                 As Traveller
               </option>
-              <option value="Sender" className="bg-sky-100">
+              <option value="Sender" className="">
                 As Sender
               </option>
             </select>
@@ -100,7 +100,7 @@ function Form() {
             defaultCountry="BD"
             value={value}
             onChange={setValue}
-            className="bg-amber-600 flex-1 min-w-0  focus:outline-none outline-0 border-none rounded-md p-2  placeholder:text-center"
+            className="flex-1 min-w-0  focus:outline-none outline-0 border-none rounded-md py-2 px-4 placeholder:text-center"
           />
 
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -110,21 +110,21 @@ function Form() {
                 name="length"
                 type="number"
                 placeholder="Length"
-                className=" bg-amber-600 flex-1 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
               />
               {/* <span className="text-gray-500 flex items-center">×</span> */}
               <input
                 name="width"
                 type="number"
                 placeholder="Width"
-                className="bg-amber-600 flex-1 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
               />
               {/* <span className="text-gray-500 flex items-center">×</span> */}
               <input
                 name="depth"
                 type="number"
                 placeholder="Depth"
-                className="bg-amber-600 flex-1 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2 placeholder:text-center"
+                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4 placeholder:text-center"
               />
             </div>
           </div>
@@ -134,7 +134,7 @@ function Form() {
               name="max_weight"
               type="number"
               placeholder="Weight in kg"
-              className="w-full min-w-0 bg-amber-600 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className="w-full min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -143,7 +143,7 @@ function Form() {
               name="location_form"
               type="text"
               placeholder="Departure airport or select from dropdown"
-              className="bg-amber-600 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className=" min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -152,7 +152,7 @@ function Form() {
               name="location_to"
               type="text"
               placeholder="Arrival airport or select from dropdown"
-              className="bg-amber-600 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className=" min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -160,16 +160,16 @@ function Form() {
             <input
               name="departure_date"
               type="date"
-              className="bg-amber-600 rounded-md p-2 focus:outline-none border-none w-full"
+              className="rounded-md py-2 px-4 focus:outline-none border-none w-full"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
             <label className="">Expected Price</label>
             <input
               name="expected_price"
-              type="text"
+              type="number"
               placeholder="e.g., $50 or negotiable"
-              className="bg-amber-600 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -178,7 +178,7 @@ function Form() {
               name="pickup_location"
               type="text"
               placeholder="City or area for pickup"
-              className="bg-amber-600 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
           <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
@@ -187,7 +187,7 @@ function Form() {
               name="delivery_location"
               type="text"
               placeholder="City or area for delivery"
-              className="bg-amber-600 min-w-0 focus:outline-none border-none focus:ring-2 focus:ring-red-400 border border-gray-300 rounded-md p-2  placeholder:text-center"
+              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
             />
           </div>
         </div>

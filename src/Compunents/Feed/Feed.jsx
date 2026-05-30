@@ -49,12 +49,12 @@ function Feed() {
 
     fetchData();
   }, []);
-
+console.log("allPosts", allPosts);
   return (
     <div className="">
      
-      {allPosts ? (
-        <div className="text-center bg-sky-300 max-w-110 mx-auto min-h-20"> Nothing to show</div>
+      {!allPosts ? (
+        <div className="text-center bg-(--background-secondary) max-w-110 mx-auto min-h-20"> Nothing to show</div>
       ) : (
         allPosts.map((data, index) => {
           return (
