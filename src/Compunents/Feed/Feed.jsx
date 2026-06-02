@@ -54,13 +54,13 @@ console.log("allPosts", allPosts);
     <div className="">
      
       {!allPosts ? (
-        <div className="text-center bg-(--background-secondary) max-w-110 mx-auto min-h-20"> Nothing to show</div>
+        <div className="text-center bg-(--background-secondary) max-w-110 mx-auto min-h-20 "> Nothing to show</div>
       ) : (
         allPosts.map((data, index) => {
           return (
             <div
               key={index}
-              className="p-4 m-5 bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-110 flex flex-col "
+              className="p-4 m-5 bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex flex-col"
             >
               <div className="mx-auto  w-full p-3 rounded-md">
                 {data.role == "Sender" ? (
@@ -106,7 +106,7 @@ console.log("allPosts", allPosts);
       )}
       {/*<div>{airports[0].name}</div>*/}
 
-      <div></div>
+      <div className="pb-10 text-center">The End</div>
       <div></div>
       <div></div>
       <div></div>

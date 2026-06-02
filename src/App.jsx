@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-(--background) min-h-dvh">
+      <div className="bg-(--background)  min-h-dvh">
         <BrowserRouter>
           <Header />
           {/* <Snackbar/> */}

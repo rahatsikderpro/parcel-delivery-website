@@ -102,7 +102,7 @@ function Form() {
   };
 
   return (
-    <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-110 flex items-center justify-center">
+    <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex items-center justify-center">
       <Snackbar show={snackbar.show} text={snackbar.text} />
       <form onSubmit={handleSend} className="w-full max-w-110">
         <div className="w-full max-w-110 mx-auto p-5">
