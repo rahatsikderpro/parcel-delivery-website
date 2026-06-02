@@ -1,14 +1,27 @@
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import {isValidPhoneNumber} from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
 
 import Dropdown from "../Ui/Dropdown";
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase.js";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import Snackbar from "../Snackbar/Snackbar.jsx";
 
 function Form() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
+  const [snackbar, setSnackbar] = useState({
+    show: false,
+    text: "",
+  });
+  useEffect(() => {
+    if (snackbar.show) {
+      const timer = setTimeout(() => {
+        setSnackbar({ show: false, text: "" });
+      }, 3000); // 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [snackbar]);
   // const handleSubmit = (e) => {
   //   e.preventDefault(); // stop page reload
 
@@ -38,19 +51,27 @@ function Form() {
       pickup_location: formData.get("pickup_location"),
       delivery_location: formData.get("delivery_location"),
     };
-    console.log("validNumver", sent_data.phone)
+    console.log("validNumver", sent_data.phone);
     if (!isValidPhoneNumber(value)) {
-      console.log("isValidPhoneNumber.value", isValidPhoneNumber(value))
-      alert("Please enter a valid phone number for the selected country.")
+      console.log("isValidPhoneNumber.value", isValidPhoneNumber(value));
+      // alert("Please enter a valid phone number for the selected country.");
+      setSnackbar({
+        show: true,
+        text: "Invalid phone number",
+      });
       return;
     }
     for (let key in sent_data) {
       if (!sent_data[key]) {
         console.log(`${key} is required`);
+        setSnackbar({
+          show: true,
+          text: `${key} is required`,
+        });
         return;
       }
     }
-    
+
     try {
       const sendingmessage = await addDoc(collection(db, "delivery_app"), {
         phone: value,
@@ -75,6 +96,7 @@ function Form() {
 
   return (
     <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-110 flex items-center justify-center">
+      <Snackbar show={snackbar.show} text={snackbar.text} />
       <form onSubmit={handleSend} className="w-full max-w-110">
         <div className="w-full max-w-110 mx-auto p-5">
           <h3 className="">Post form</h3>
@@ -94,7 +116,6 @@ function Form() {
           {/* Custome Dropdown */}
           <Dropdown />
 
-          
           <PhoneInput
             placeholder="Enter phone number"
             defaultCountry="BD"
