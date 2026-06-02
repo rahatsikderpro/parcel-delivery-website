@@ -89,6 +89,13 @@ function Form() {
         timestamp: serverTimestamp(),
       });
       console.log("Sent successfully to firebase");
+      setSnackbar({
+        show: true,
+        text: "Successfully Posted",
+      });
+      //reset all field
+      e.target.reset();
+      setValue(""); 
     } catch (e) {
       console.error("Error : ", e);
     }
