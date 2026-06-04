@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 function Header() {
   return (
-    <div className="bg-(--background-secondary) mb-8 flex justify-center items-center gap-8 min-h-20 ">
+    <div className=" z-9999 bg-(--background-secondary) mb-8 flex justify-center items-center gap-8 min-h-20 fixed top-0 w-full">
       {/* <div className="cursor-pointer">Home</div>
       <div className="cursor-pointer">Form</div> */}
 

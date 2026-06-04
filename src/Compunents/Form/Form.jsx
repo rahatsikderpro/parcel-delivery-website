@@ -95,140 +95,144 @@ function Form() {
       });
       //reset all field
       e.target.reset();
-      setValue(""); 
+      setValue("");
     } catch (e) {
       console.error("Error : ", e);
     }
   };
 
   return (
-    <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex items-center justify-center">
-      <Snackbar show={snackbar.show} text={snackbar.text} />
-      <form onSubmit={handleSend} className="w-full max-w-110">
-        <div className="w-full max-w-110 mx-auto p-5">
-          <h3 className="">Post form</h3>
-          <div>
-            <select
-              name="role"
-              className="w-50 border-0 focus:outline-none  rounded-md p-2"
-            >
-              <option value="Traveller" className="">
-                As Traveller
-              </option>
-              <option value="Sender" className="">
-                As Sender
-              </option>
-            </select>
-          </div>
-          {/* Custome Dropdown */}
-          <Dropdown />
-
-          <PhoneInput
-            placeholder="Enter phone number"
-            defaultCountry="BD"
-            value={value}
-            onChange={setValue}
-            className="flex-1 min-w-0  focus:outline-none outline-0 border-none rounded-md py-2 px-4 placeholder:text-center"
-          />
-
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Free Space Dimension (L × W × H)</label>
-            <div className="flex gap-3 w-full">
-              <input
-                name="length"
-                type="number"
-                placeholder="Length"
-                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
+    <div className="py-30">
+      <div className="bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex items-center justify-center">
+        <Snackbar show={snackbar.show} text={snackbar.text} />
+        <form onSubmit={handleSend} className="w-full max-w-110">
+          <div className="w-full max-w-110 mx-auto p-5">
+            <h3 className="">Post form</h3>
+            <div className="pb-4">
+              <select
+                name="role"
+                className="w-50 focus:outline-none border-2 border-(--input-border) rounded-md p-2"
+              >
+                <option value="Traveller" className="">
+                  As Traveller
+                </option>
+                <option value="Sender" className="">
+                  As Sender
+                </option>
+              </select>
+            </div>
+            {/* Custome Dropdown */}
+            {/* <Dropdown /> */}
+            <div className="pb-4">
+              <div>Enter Valid Phone Number</div>
+              <PhoneInput
+                placeholder="Enter phone number"
+                defaultCountry="BD"
+                value={value}
+                onChange={setValue}
+                className=" flex-1 min-w-0  focus:outline-none outline-0  rounded-md py-2 px-4 placeholder:text-center border-2 border-(--input-border) "
               />
-              {/* <span className="text-gray-500 flex items-center">×</span> */}
+            </div>
+
+            <div className=" pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">Free Space Dimension (L × W × H)</label>
+              <div className="flex gap-3 w-full">
+                <input
+                  name="length"
+                  type="number"
+                  placeholder="Length"
+                  className=" flex-1 min-w-0 focus:outline-none rounded-md py-2 px-4 placeholder:text-center border-2 border-(--input-border)"
+                />
+                {/* <span className="text-gray-500 flex items-center">×</span> */}
+                <input
+                  name="width"
+                  type="number"
+                  placeholder="Width"
+                  className=" flex-1 min-w-0 focus:outline-none rounded-md py-2 px-4 placeholder:text-center border-2 border-(--input-border)"
+                />
+                {/* <span className="text-gray-500 flex items-center">×</span> */}
+                <input
+                  name="depth"
+                  type="number"
+                  placeholder="Depth"
+                  className=" flex-1 min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4 placeholder:text-center"
+                />
+              </div>
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 min-w-0 m-auto ">
+              <label className="">Free Space Weight (KG)</label>
               <input
-                name="width"
+                name="max_weight"
                 type="number"
-                placeholder="Width"
-                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
+                placeholder="Weight in kg"
+                className="w-full min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
               />
-              {/* <span className="text-gray-500 flex items-center">×</span> */}
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">From Airport</label>
               <input
-                name="depth"
+                name="location_form"
+                type="text"
+                placeholder="Departure airport or select from dropdown"
+                className=" min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
+              />
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">To Airport</label>
+              <input
+                name="location_to"
+                type="text"
+                placeholder="Arrival airport or select from dropdown"
+                className=" min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
+              />
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">Departure Date</label>
+              <input
+                name="departure_date"
+                type="date"
+                className="rounded-md py-2 px-4 focus:outline-none border-2 border-(--input-border) w-full"
+              />
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">Expected Price</label>
+              <input
+                name="expected_price"
                 type="number"
-                placeholder="Depth"
-                className=" flex-1 min-w-0 focus:outline-none border-none rounded-md py-2 px-4 placeholder:text-center"
+                placeholder="e.g., $50 or negotiable"
+                className="min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
+              />
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">Pickup Location</label>
+              <input
+                name="pickup_location"
+                type="text"
+                placeholder="City or area for pickup"
+                className="min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
+              />
+            </div>
+            <div className="pb-4 flex flex-col gap-1 w-full max-w-110 m-auto ">
+              <label className="">Delivery Location</label>
+              <input
+                name="delivery_location"
+                type="text"
+                placeholder="City or area for delivery"
+                className="min-w-0 focus:outline-none border-2 border-(--input-border) rounded-md py-2 px-4  placeholder:text-center"
               />
             </div>
           </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 min-w-0 m-auto ">
-            <label className="">Free Space Weight (KG)</label>
-            <input
-              name="max_weight"
-              type="number"
-              placeholder="Weight in kg"
-              className="w-full min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">From Airport</label>
-            <input
-              name="location_form"
-              type="text"
-              placeholder="Departure airport or select from dropdown"
-              className=" min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">To Airport</label>
-            <input
-              name="location_to"
-              type="text"
-              placeholder="Arrival airport or select from dropdown"
-              className=" min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Departure Date</label>
-            <input
-              name="departure_date"
-              type="date"
-              className="rounded-md py-2 px-4 focus:outline-none border-none w-full"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Expected Price</label>
-            <input
-              name="expected_price"
-              type="number"
-              placeholder="e.g., $50 or negotiable"
-              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Pickup Location</label>
-            <input
-              name="pickup_location"
-              type="text"
-              placeholder="City or area for pickup"
-              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full max-w-110 m-auto ">
-            <label className="">Delivery Location</label>
-            <input
-              name="delivery_location"
-              type="text"
-              placeholder="City or area for delivery"
-              className="min-w-0 focus:outline-none border-none rounded-md py-2 px-4  placeholder:text-center"
-            />
-          </div>
-        </div>
 
-        <button
-          type="submit"
-          className="block bg-sky-400 cursor-pointer w-full max-w-50 p-3 mx-auto mb-8 rounded-md"
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        >
-          Post
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="block bg-sky-400 cursor-pointer w-full max-w-50 p-3 mx-auto mb-8 rounded-md"
+            onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          >
+            Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

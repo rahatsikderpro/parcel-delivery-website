@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --primary: rgb(24, 130, 255);
-  --background: rgb(226, 232, 240);
+  --primary             : rgb(24, 130, 255);
+  --background          : rgb(226, 232, 240);
   --background-secondary: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
+  --text-primary        : #111827;
+  --text-secondary      : #6B7280;
+  --input-border        : rgba(24, 132, 255, 0.2);
+  --input-border-focus  : rgb(24, 130, 255);
   
+
+
   --bg-snackbar: rgb(196, 224, 255);
   --accent: #ffffff;
   --background-feed: #fface6;

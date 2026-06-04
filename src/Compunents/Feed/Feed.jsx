@@ -51,7 +51,7 @@ function Feed() {
   }, []);
 console.log("allPosts", allPosts);
   return (
-    <div className="">
+    <div className="py-30">
      
       {!allPosts ? (
         <div className="text-center bg-(--background-secondary) max-w-110 mx-auto min-h-20 "> Nothing to show</div>
@@ -74,24 +74,24 @@ console.log("allPosts", allPosts);
                 )}
               </div>
               <div className=" w-full flex items-center">
-                <div className="w-60">
-                  Phone:{" "}
+                <div className="w-55">
+                  Phone: {" "}
                   {showPassword === index
                     ? data.phone
-                    : "••••••••••••••••••••••••••"}
+                    : "••••••••••••••••••••••••"}
                 </div>
                 <div
                   onClick={() => togglePassword(index)}
                   className="cursor-pointer w-10  select-none flex justify-start"
                 >
-                  {showPassword === index ? <FaEyeSlash /> : <FaEye />}
+                  {showPassword === index ? <FaEyeSlash className="text-(--primary)"/> : <FaEye className="text-(--primary)" />}
                 </div>
               </div>
               <div className="flex gap-4">
-                <div>Available Space  </div>
-                <div>L: {data.length} </div>
-                <div>W: {data.width}  </div>
-                <div>D: {data.depth}  </div>
+                <div>Available Space (In Inch)</div>
+                <div>L:{data.length}</div>
+                <div>W:{data.width}</div>
+                <div>D:{data.depth}</div>
               </div>
               <div>Max Weight: {data.max_weight}</div>
               <div>Location To: {data.location_to}</div>
@@ -106,7 +106,7 @@ console.log("allPosts", allPosts);
       )}
       {/*<div>{airports[0].name}</div>*/}
 
-      <div className="pb-10 text-center">The End</div>
+      {/* <div className="pb-10 text-center">The End</div> */}
       <div></div>
       <div></div>
       <div></div>
