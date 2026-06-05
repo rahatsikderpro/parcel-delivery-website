@@ -8,7 +8,7 @@
   --text-secondary      : #6B7280;
   --input-border        : rgba(24, 132, 255, 0.2);
   --input-border-focus  : rgb(24, 130, 255);
-  
+  --shadow              : 0 8px 10px rgb(3, 3, 3, 0.25);
 
 
   --bg-snackbar: rgb(196, 224, 255);

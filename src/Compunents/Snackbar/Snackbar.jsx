@@ -5,12 +5,12 @@ function Snackbar({ text = "Snackbar", show = false }) {
       className={`
   bg-(--bg-snackbar) max-w-100 w-[80%] rounded-md h-10  
   flex items-center justify-center
-  fixed left-1/2 -translate-x-1/2 -bottom-20
-  transition-all duration-300 ease-out
+  fixed left-1/2 -translate-x-1/2 -top-20
+  transition-all duration-500 ease-out
 
   ${show
-    ? "bottom-6"
-    : "-bottom-20  pointer-events-none"}
+    ? "top-36 opacity-100 scale-100"
+    : "-top-20 opacity-0 scale-95 pointer-events-none"}
 `}
     >
       {text}

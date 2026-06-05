@@ -60,7 +60,7 @@ console.log("allPosts", allPosts);
           return (
             <div
               key={index}
-              className="p-4 m-5 bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex flex-col"
+              className="p-4 m-5 bg-(--background-secondary) mx-auto rounded-lg -md w-full max-w-98 flex flex-col drop-shadow-(--shadow)"
             >
               <div className="mx-auto  w-full p-3 rounded-md">
                 {data.role == "Sender" ? (
